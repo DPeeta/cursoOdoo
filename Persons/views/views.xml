@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="person_tree_view">
+            <field name="name">person.tree</field>
+            <field name="model">persons.person</field>
+            <field name="arch" type="xml">
+                <tree string="Person List">
+                    <field name="name" />
+                    <field name="age" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="person_form_view">
+            <field name="name">person.form</field>
+            <field name="model">persons.person</field>
+            <field name="arch" type="xml">
+                <form string="Person Form">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="age" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="person_list_action">
+            <field name="name">Persons</field>
+            <field name="res_model">persons.person</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">Registrate the first person
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="main_person_menu" name="Person" />
+        <menuitem id="person_menu" name="Person"
+            parent="main_person_menu" />
+        <menuitem id="persons_menu" name="Persons" parent="person_menu"
+            action="person_list_action" />
+
+    </data>
+</odoo>
