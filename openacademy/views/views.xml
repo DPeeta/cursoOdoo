@@ -81,7 +81,7 @@
                             </group>
                         </group>
                         <group>
-                            <field name="instructor_id" />
+                            <field name="instructor_ids" />
                             <field name="attendee_id" />
                         </group>
                     </sheet>

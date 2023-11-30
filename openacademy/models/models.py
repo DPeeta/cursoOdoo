@@ -26,12 +26,12 @@ class Session(models.Model):
     attendee_id = fields.Many2many('res.partner',
         ondelete='cascade', string="Attendees", index=True)
     
-    instructor_id = fields.Many2one('res.partner',
+    instructor_ids = fields.Many2one('res.partner',
         ondelete='cascade', string="Instructor", index=True, domain="[('is_Instructor', '=', True)]" )
 
 class Partner(models.Model):
     _inherit = 'res.partner'
 
     is_Instructor = fields.Boolean(string='Is Instructor')
-    sessions_id = fields.One2many('openacademy.session', 'instructor_id', string="Sessions", index=True)
+    sessions_id = fields.One2many('openacademy.session', 'instructor_ids', string="Sessions", index=True)
     
