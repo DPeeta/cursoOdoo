@@ -30,8 +30,14 @@ class Session(models.Model):
     course_id = fields.Many2one('openacademy.course',
         ondelete='cascade', string="Course", required=True)
     
-    attendee_id = fields.Many2many('res.partner',
+    attendee_ids = fields.Many2many('res.partner',
         ondelete='cascade', string="Attendees", index=True)
+    
+    cant_attendees = fields.Integer( string="Cant of Attendees" , compute='_cant_attendees')
+    @api.depends('attendee_ids')
+    def _cant_attendees(self):
+        for r in self:
+            r.cant_attendees = len(r.attendee_ids)
     
     instructor_ids = fields.Many2one('res.partner',
         ondelete='cascade', string="Instructor", index=True, domain="[('is_Instructor', '=', True)]" )

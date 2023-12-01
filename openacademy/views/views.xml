@@ -78,11 +78,13 @@
                             <group string="Schedule">
                                 <field name="start_date" />
                                 <field name="duration" />
+                                <field name="cant_attendees" />
+                                
                             </group>
                         </group>
                         <group>
                             <field name="instructor_ids" />
-                            <field name="attendee_id" />
+                            <field name="attendee_ids" />
                         </group>
                     </sheet>
                 </form>
