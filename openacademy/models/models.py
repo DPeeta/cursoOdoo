@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo import exceptions
 
 class Course(models.Model):
     _name = 'openacademy.course'
@@ -8,7 +9,6 @@ class Course(models.Model):
     
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
-
     @api.onchange('description', 'name')
     def _onchange_description(self):
         for r in self:
@@ -25,7 +25,13 @@ class Session(models.Model):
     name = fields.Char(required=True)
     start_date = fields.Date()
     duration = fields.Float(digits=(6, 2), help="Duration in days")
+
     seats = fields.Integer(string="Number of seats")
+    @api.constrains('seats')
+    def _check_seats_positive(self):
+        for r in self:
+            if r.seats < 1 :
+                raise exceptions.ValidationError("The number of seats should be positive")
 
     course_id = fields.Many2one('openacademy.course',
         ondelete='cascade', string="Course", required=True)
