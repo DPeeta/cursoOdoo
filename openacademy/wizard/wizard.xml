@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data>
+<data>
+    <!-- wizard suscrivir varios usuarios a varias sesiones -->
         <record model="ir.ui.view" id="wizard_form_view">
             <field name="name">wizard.form</field>
             <field name="model">openacademy.wizard</field>
@@ -27,7 +28,37 @@
         </record>
 
         <menuitem id="addatt_menu" name="Add attendees"
-              parent="openacademy_menu"
-              action="session_wizard_action"/>
-  </data>
+            parent="openacademy_menu"
+            action="session_wizard_action"/>
+
+    <!-- todas las sesiones con duración A (en dias) la reemplace por le valor de B -->
+        <record model="ir.ui.view" id="wizardrempduration_form_view">
+            <field name="name">wizardrempduration.form</field>
+            <field name="model">openacademy.wizardrempduration</field>
+            <field name="arch" type="xml">
+                <form string="Replace duration">
+                    <group>
+                        <field name="duration_find"/>
+                        <field name="duration_replace"/>
+                    </group>
+                    <footer>
+                        <button name="replace" type="object"
+                            string="Replace" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="session_wizardrempduration_action">
+            <field name="name">Replace duration</field>
+            <field name="res_model">openacademy.wizardrempduration</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="replduration_menu" name="Replace duration"
+            parent="openacademy_menu"
+            action="session_wizardrempduration_action"/>
+</data>
 </odoo>

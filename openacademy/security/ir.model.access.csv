@@ -5,3 +5,4 @@ session_manager,session manager,model_openacademy_session,group_manager,1,1,1,1
 course_read_all,course all,model_openacademy_course,,1,1,0,0
 session_read_all,session all,model_openacademy_session,,1,1,0,0
 access_openacademy_openacademy_wizard,openacademy.openacademy.wizard,model_openacademy_wizard,,1,1,1,1
+access_openacademy_openacademy_wizard,openacademy.openacademy.wizard,model_openacademy_wizardrempduration,,1,1,1,1
